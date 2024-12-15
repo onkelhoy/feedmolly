@@ -1,0 +1,30 @@
+{
+  "name": "PROJECTSCOPE",
+  "version": "0.0.0",
+  "description": "my project",
+  "private": true,
+  "scripts": {
+    "analyse": "bash ./bin/analyse/run.sh",
+    "create": "bash ./bin/create/run.sh",
+    "clean": "bash ./bin/_utils/clean.sh",
+    "init": "bash ./bin/_utils/init.sh",
+    "publish": "bash ./bin/publish/run.sh",
+    "build": "bash ./bin/build/run.sh",
+    "test": "bash ./bin/test/run.sh",
+    "server": "npx @papit/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onkelhoy/PLACEHOLDER_NAME.git"
+  },
+  "keywords": [
+    "web-component",
+    "typescript",
+    "sass"
+  ],
+  "author": "",
+  "license": "MIT",
+  "workspaces": [
+    "packages/**/*"
+  ]
+}
