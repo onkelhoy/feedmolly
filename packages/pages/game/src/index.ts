@@ -10,6 +10,6 @@ if (!window.customElements) {
   throw new Error('Custom Elements not supported');
 }
 
-if (!window.customElements.get('game')) {
-  window.customElements.define('game', Game);
+if (!window.customElements.get('feedmolly-game')) {
+  window.customElements.define('feedmolly-game', Game);
 }

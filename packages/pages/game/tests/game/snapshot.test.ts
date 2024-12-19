@@ -5,7 +5,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto('game');
 });
 
-test.describe("@/game visual regression", () => {
+test.describe("@feedmolly/game visual regression", () => {
   test('default snapshot', async ({ page }) => {
     await expect(page).toHaveScreenshot();
   });

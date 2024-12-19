@@ -5,10 +5,10 @@ test.beforeEach(async ({ page }) => {
   await page.goto('game');
 });
 
-test.describe("@/game unit tests", () => {
+test.describe("@feedmolly/game unit tests", () => {
   test('available in DOM', async ({ page }) => {
     // Interact with your component and make assertions
-    const component = await page.$('game');
+    const component = await page.$('feedmolly-game');
     expect(component).not.toBeNull();
   });
 });

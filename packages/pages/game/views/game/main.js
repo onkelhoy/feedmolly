@@ -3,7 +3,7 @@ import '@papit/core';
 import '@papit/translator';
 
 // component
-import '@/game';
+import '@feedmolly/game';
 
 window.onload = () => {
   console.log('[demo]: window loaded');

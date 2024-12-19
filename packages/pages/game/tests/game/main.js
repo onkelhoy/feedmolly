@@ -1,1 +1,1 @@
-import '@/game';
+import '@feedmolly/game';

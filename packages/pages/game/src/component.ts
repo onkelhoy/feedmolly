@@ -26,6 +26,6 @@ export class Game extends CustomElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "game": Game;
+    "feedmolly-game": Game;
   }
 }
