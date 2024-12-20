@@ -1,5 +1,5 @@
 {
-  "name": "@/feed-molly",
+  "name": "@feedmolly/root",
   "version": "0.0.0",
   "description": "my project",
   "private": true,
@@ -26,5 +26,13 @@
   "license": "MIT",
   "workspaces": [
     "packages/**/*"
-  ]
+  ],
+  "dependencies": {
+    "@papit/game-engine": "^0.0.2",
+    "@papit/game-input-events": "^0.0.2",
+    "@papit/game-intersection": "^0.0.0",
+    "@papit/game-vector": "^0.0.0",
+    "@papit/router": "^0.0.0",
+    "@papit/server": "^0.0.24"
+  }
 }
