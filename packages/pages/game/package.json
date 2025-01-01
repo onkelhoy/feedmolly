@@ -38,7 +38,11 @@
     "url": "https://github.com/onkelhoy/feed-molly.git"
   },
   "dependencies": {
-    "@papit/core": "*",
+    "@papit/core": "^0.0.1",
+    "@papit/game-engine": "^0.0.2",
+    "@papit/game-input-events": "^0.0.3",
+    "@papit/game-intersection": "^0.0.0",
+    "@papit/game-vector": "^0.0.0",
     "tslib": "^2.5.0"
   },
   "devDependencies": {
