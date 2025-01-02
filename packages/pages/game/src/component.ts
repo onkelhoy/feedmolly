@@ -5,6 +5,9 @@ import { CustomElement, debounce, html, property, query } from "@papit/core";
 import { Engine, getlink, LoadImage } from "@papit/game-engine";
 import { InputEvents } from "@papit/game-input-events";
 
+import "@feedmolly/play-button";
+import "@feedmolly/heart";
+
 // local 
 import { style } from "./style";
 import { Item } from "./components/item";
@@ -21,35 +24,10 @@ export class Game extends CustomElement {
   interval: number;
   score = 0;
   items: Item[] = [];
+  hearts = 3;
   eatSound!: HTMLAudioElement;
 
   @query('div.score') scoreElement!: HTMLDivElement;
-  @query<HTMLDivElement>({
-    selector: "div.menu",
-    load: async function (this:Game, element) {
-
-      let img = element.querySelector("img");
-      if (img) return;
-
-      img = await LoadImage(getlink("/images/menu-background.png"));
-      element.appendChild(img);
-      
-      const buttonDivDefault = element.querySelector("button > div.default");
-      if (buttonDivDefault) {
-        const btnDefault = await LoadImage(getlink("/images/play.png"));
-        buttonDivDefault.appendChild(btnDefault);
-      }
-      else {
-        console.log('no button added')
-      }
-      const buttonDivPress = element.querySelector("button > div.press");
-      if (buttonDivPress) {
-        const btnPress = await LoadImage(getlink("/images/play-pressed.png"));
-        buttonDivPress.appendChild(btnPress);
-      }
-    }
-  }) menuElement!: HTMLDivElement;
-
   @property({ type: Boolean, rerender: false }) play:boolean = false;
 
   constructor() {
@@ -65,11 +43,7 @@ export class Game extends CustomElement {
 
     this.engine = new Engine(
       {
-        query: '#main',
-        documentElemenet: this.shadowRoot,
-      }, 
-      {
-        query: '#background',
+        query: 'canvas',
         documentElemenet: this.shadowRoot,
       }, 
     );
@@ -87,12 +61,9 @@ export class Game extends CustomElement {
     await Item.load();
     await Molly.load();
     this.eatSound = new Audio(getlink("/sounds/flip.mp3"));
-    const background = await LoadImage(getlink("/images/background.jpg"));
-
-    this.engine.getContext(1).drawImage(background, 0, 0, this.engine.width, this.engine.height);
   }
   
-  handleClick = () => {
+  handleplayclick = () => {
     this.engine.loop(this.draw); // cool function
     this.setplay();
   }
@@ -153,14 +124,13 @@ export class Game extends CustomElement {
 
   render() {
     return html`
-      <canvas id="background"></canvas>
-      <canvas id="main"></canvas>
+      <img class="background" src="${getlink("images/background.jpg")}" alt="game background" />
+      <canvas>Your browser does not support html-canvas</canvas>
       <div class="score">SCORE: <span id="score">0</span></div>
+
       <div class="menu">
-        <button @click="${this.handleClick}">
-          <div class="default"></div>
-          <div class="press"></div>
-        </button>
+        <img src="${getlink("images/menu-background.png")}" alt="menu background" />
+        <play-button @click="${this.handleplayclick}"></play-button>
       </div>
     `
   }

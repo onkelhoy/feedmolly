@@ -1,4 +1,29 @@
 :host {
-  color: var(--pap-color-text);
-  background-color: var(--pap-color-background);
+  width: 200px;
+  height: 80px;
+  display: block;
+  position: relative;
+  user-select: none;
+
+  img {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+  }
+  img.pressed {
+    opacity: 0;
+  }
+  img.default {
+    opacity: 100%;
+  }
+}
+
+:host(:active) {
+  img.pressed {
+    opacity: 100%;
+  }
+  img.default {
+    opacity: 0;
+  }
 }

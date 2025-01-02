@@ -1,4 +1,24 @@
 :host {
-  color: var(--pap-color-text);
-  background-color: var(--pap-color-background);
+  display: inline-block;
+  user-select: none;
+  animation: bopping 500ms ease;
+  animation-iteration-count: infinite;
+  animation-delay: calc(var(--index) * 150ms);
+  animation-direction: alternate;
+  width: 80px;
+  height: 80px;
+
+  img {
+    pointer-events: none;
+  }
+}
+
+@keyframes bopping {
+  0% {
+    translate: 0 0;
+  }
+
+  100% {
+    translate: 0 10px;
+  }
 }

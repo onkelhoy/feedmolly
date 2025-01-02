@@ -1,0 +1,1 @@
+export const style = `:host{display:inline-block;user-select:none;animation:bopping 500ms ease;animation-iteration-count:infinite;animation-delay:calc(var(--index)*150ms);animation-direction:alternate;width:80px;height:80px}:host img{pointer-events:none}@keyframes bopping{0%{translate:0 0}100%{translate:0 10px}}`;

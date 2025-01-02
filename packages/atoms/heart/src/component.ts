@@ -1,25 +1,24 @@
 // import statements 
 // system 
-import { CustomElement, html, property } from "@papit/core";
+import { CustomElement, property } from "@papit/core";
 
 // local 
 import { style } from "./style";
-import { ClickEvent } from "./types";
 
 export class Heart extends CustomElement {
   static style = style;
 
-  // properties 
-  @property({ type: Boolean }) foo: boolean = false;
-
-  // event handlers
-  private handleclick = () => {
-    this.dispatchEvent(new CustomEvent<ClickEvent>("main-click", { detail: { timestamp: performance.now() } }));
-  }
+  @property({
+    type: Number,
+    rerender: false,
+    after: function(this:Heart, value:number) {
+      this.style.setProperty("--index", String(value));
+    }
+  }) index:number = 0;
 
   render() {
-    return html`
-      <p @click="${this.handleclick}">Llama Trauma Baby Mama</p>
+    return `
+      <img src="images/heart.png" alt="game life" />
     `
   }
 }

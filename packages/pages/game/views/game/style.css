@@ -1,4 +1,9 @@
 body {
   background-color: var(--pap-background, #DEDEDE);
   color: var(--pap-text, #080808);
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
