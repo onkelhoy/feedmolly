@@ -17,6 +17,6 @@ export declare class Item extends Vector {
     constructor(width: number);
     get image(): HTMLImageElement;
     get score(): number;
-    update(): void;
+    update(difficultiness?: number): void;
     draw(context: CanvasRenderingContext2D): void;
 }

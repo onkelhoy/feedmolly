@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@feedmolly/heart": "^0.0.0",
+    "@feedmolly/music-button": "^0.0.0",
     "@feedmolly/play-button": "^0.0.0",
     "@papit/core": "^0.0.1",
     "@papit/game-engine": "^0.0.2",

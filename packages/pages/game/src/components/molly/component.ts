@@ -55,10 +55,6 @@ export class Molly extends Vector {
     }
   }
 
-  update(mouse: VectorObject) {
-    this.x = mouse.x;
-  }
-
   draw(context:CanvasRenderingContext2D) {
     const img = Molly.images[this.mode];
     context.drawImage(img, this.x - img.width / 2, this.y - 230);

@@ -1,4 +1,4 @@
-import { Vector, VectorObject } from "@papit/game-vector";
+import { Vector } from "@papit/game-vector";
 import { Mode } from "./types";
 import { Item } from "../item";
 export declare class Molly extends Vector {
@@ -15,7 +15,6 @@ export declare class Molly extends Vector {
     };
     private resetMode;
     eat(item: Item): void;
-    update(mouse: VectorObject): void;
     draw(context: CanvasRenderingContext2D): void;
     drawBoundary(context: CanvasRenderingContext2D): void;
 }

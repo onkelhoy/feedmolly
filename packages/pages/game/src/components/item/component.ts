@@ -55,9 +55,9 @@ export class Item extends Vector {
     return Item.items[this.index].score;
   }
 
-  update() {
+  update(difficultiness = 0) {
     this.rotation += this.rotationspeed;
-    this.y+=this.speed;
+    this.y += this.speed + difficultiness;
   }
 
   draw(context:CanvasRenderingContext2D) {

@@ -37,4 +37,4 @@ export declare class Engine {
     loop(callback: SettingCallback, index?: number): void;
     stop(index?: number): void;
 }
-export declare function LoadImage(src: string): Promise<unknown>;
+export declare function LoadImage(src: string): Promise<HTMLImageElement>;
