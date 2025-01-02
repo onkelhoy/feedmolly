@@ -1,0 +1,1 @@
+export declare const style = ":host{display:block;position:relative;width:32px;height:32px}:host img{position:absolute;top:0;left:0}:host([play=false]) img.play{display:none}:host([play=false]) img.paused{display:block}:host([play=true]) img.play{display:block}:host([play=true]) img.paused{display:none}";
