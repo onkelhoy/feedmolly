@@ -62,6 +62,8 @@ export class Game extends CustomElement {
   }
   
   handleplayclick = () => {
+    this.score = 0;
+    this.hearts = 3;
     this.engine.loop(this.draw); // cool function
     this.setplay();
   }
@@ -145,6 +147,10 @@ export class Game extends CustomElement {
           SCORE: <span>${this.score}</span>
         </div>
       </header>
+
+      <footer>
+        <p>art & concept by Phượng Ngọc Đào</p>
+      </footer>
 
       <div class="menu start">
         <img src="images/menu-background.png" alt="menu background" />
