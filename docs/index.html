@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feed Molly</title>
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "@papit/core": "./library/@papit/core/lib/bundle.js",
+        "@papit/translator": "./library/@papit/translator/lib/bundle.js",
+        "@papit/game-engine": "./library/@papit/game-engine/lib/bundle.js",
+        "@papit/game-input-events": "./library/@papit/game-input-events/lib/bundle.js",
+        "@papit/game-intersection": "./library/@papit/game-intersection/lib/bundle.js",
+        "@papit/game-shape": "./library/@papit/game-shape/lib/bundle.js",
+        "@papit/game-vector": "./library/@papit/game-vector/lib/bundle.js",
+        "@feedmolly/game": "./library/@feedmolly/game/lib/bundle.js",
+        "@feedmolly/heart": "./library/@feedmolly/heart/lib/bundle.js",
+        "@feedmolly/play-button": "./library/@feedmolly/play-button/lib/bundle.js"
+      }
+    }
+  </script>
+  <script type="module" defer src="main.js"></script>
+</head>
+
+<body>
+  <feedmolly-game></feedmolly-game>
+</body>
+
+</html>

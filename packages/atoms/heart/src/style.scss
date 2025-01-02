@@ -5,20 +5,21 @@
   animation-iteration-count: infinite;
   animation-delay: calc(var(--index) * 150ms);
   animation-direction: alternate;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
 
   img {
     pointer-events: none;
+    width: 100%;
   }
 }
 
 @keyframes bopping {
   0% {
-    translate: 0 0;
+    translate: 0 -5px;
   }
 
   100% {
-    translate: 0 10px;
+    translate: 0 5px;
   }
 }

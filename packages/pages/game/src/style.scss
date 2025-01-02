@@ -17,15 +17,18 @@ img.background {
   height: 100%;
 }
 
-div.score {
-  position: absolute;
-  top: 0;
-  left: 0;
-  text-align: end;
-  width: 100%;
+header {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  align-items: center;
   padding: 1rem;
-  box-sizing: border-box;
-  font-size: 1.5rem;
+  gap: 1rem;
+
+  div.score {
+    box-sizing: border-box;
+    font-size: 1.5rem;
+  }
 }
 
 div.menu {
@@ -35,15 +38,16 @@ div.menu {
   transform: translate(-50%, -50%);
   width: 400px;
   height: 300px;
+  display: none;
 
-  &>img {
+  img {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
   }
 
-  button {
+  play-button {
     position: absolute;
     z-index: 2;
     top: 50%;
@@ -52,8 +56,47 @@ div.menu {
   }
 }
 
-:host([play="true"]) {
-  div.menu {
+div.menu.end {
+  img.game-over {
+    z-index: 2;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  play-button {
+    position: absolute;
+    z-index: 2;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+:host([mode="start"]) {
+  div.menu.start {
+    display: block;
+  }
+}
+
+:host([mode="end"]) {
+  div.menu.end {
+    display: block;
+  }
+}
+
+:host([hearts="0"]) {
+  feedmolly-heart {
+    display: none;
+  }
+}
+:host([hearts="1"]) {
+  feedmolly-heart + feedmolly-heart {
+    display: none;
+  }
+}
+:host([hearts="2"]) {
+  feedmolly-heart + feedmolly-heart + feedmolly-heart {
     display: none;
   }
 }

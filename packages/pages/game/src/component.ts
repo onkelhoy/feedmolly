@@ -13,6 +13,7 @@ import { style } from "./style";
 import { Item } from "./components/item";
 import { Molly } from "./components/molly";
 import { Vector } from "@papit/game-vector";
+import { Mode } from "./types";
 
 export class Game extends CustomElement {
   static style = style;
@@ -22,13 +23,12 @@ export class Game extends CustomElement {
   molly!: Molly;
   time: number;
   interval: number;
-  score = 0;
   items: Item[] = [];
-  hearts = 3;
   eatSound!: HTMLAudioElement;
 
-  @query('div.score') scoreElement!: HTMLDivElement;
-  @property({ type: Boolean, rerender: false }) play:boolean = false;
+  @property({ type: String, rerender: false }) mode:Mode = "start";
+  @property({ type: Number }) score:number = 0;
+  @property({ type: Number }) hearts:number = 3;
 
   constructor() {
     super();
@@ -51,9 +51,7 @@ export class Game extends CustomElement {
       keyboard: undefined,
       touch: undefined,
       mouse: {
-        pointerlock: {
-          unadjustedMovement: false,
-        }
+        pointerlock: undefined,
       }
     });
     this.molly = new Molly(this.engine.width, this.engine.height);
@@ -69,7 +67,13 @@ export class Game extends CustomElement {
   }
   
   setplay = () => {
-    this.play = true;
+    this.mode = "play";
+  }
+
+  gameend = () => {
+    this.items = [];
+    this.engine.stop();
+    this.mode = "end";
   }
 
   draw = () => {
@@ -81,7 +85,6 @@ export class Game extends CustomElement {
     {
       this.interval = Math.random() * 1000 + 500;
       this.time = now;
-
       this.items.push(new Item(this.engine.width));
     }
 
@@ -98,38 +101,59 @@ export class Game extends CustomElement {
       if (distance <= face.r) {
         this.molly.eat(item);
         eaten = true;
-        this.score += item.score;
+        if (item.score > 0) {
+          this.score++;
+        }
+        else if (this.hearts > 0)
+        {
+          this.hearts--;
+        }
         this.eatSound.play();
       }
 
-      const missfood = item.y > this.engine.height + 50;
+      const missfood = item.y > this.engine.height + 50 && item.score > 0;
       if (eaten || missfood)
       {
         if (missfood) {
           this.molly.mode = "miss";
         }
-
         this.items.splice(i, 1);
         i--;
-
-        if (missfood) {
-          if (item.score > 0) this.score--;
+        if (missfood && this.hearts > 0) {
+          this.hearts--;
         }
-        if (this.scoreElement) this.scoreElement.innerHTML = String(this.score);
       }
     }
 
+    if (this.hearts <= 0) {
+      this.gameend();
+    } 
     this.molly.draw(this.engine.context);
   }
 
   render() {
     return html`
-      <img class="background" src="${getlink("images/background.jpg")}" alt="game background" />
+      <img class="background" src="images/background.jpg" alt="game background" />
       <canvas>Your browser does not support html-canvas</canvas>
-      <div class="score">SCORE: <span id="score">0</span></div>
+      <header>
+        <div>
+          <feedmolly-heart key="0" index="0"></feedmolly-heart>
+          <feedmolly-heart key="1" index="1"></feedmolly-heart>
+          <feedmolly-heart key="2" index="2"></feedmolly-heart>
+        </div>
+        <div class="score">
+          SCORE: <span>${this.score}</span>
+        </div>
+      </header>
 
-      <div class="menu">
-        <img src="${getlink("images/menu-background.png")}" alt="menu background" />
+      <div class="menu start">
+        <img src="images/menu-background.png" alt="menu background" />
+        <play-button @click="${this.handleplayclick}"></play-button>
+      </div>
+
+      <div class="menu end">
+        <img src="images/menu-background.png" alt="menu background" />
+        <img class="game-over" src="images/game-over.png" alt="game over" />
         <play-button @click="${this.handleplayclick}"></play-button>
       </div>
     `

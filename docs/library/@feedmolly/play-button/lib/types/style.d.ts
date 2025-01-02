@@ -1,0 +1,1 @@
+export declare const style = ":host{width:200px;height:80px;display:block;position:relative;user-select:none}:host img{position:absolute;pointer-events:none;top:0;left:0}:host img.pressed{opacity:0}:host img.default{opacity:100%}:host(:active) img.pressed{opacity:100%}:host(:active) img.default{opacity:0}";
