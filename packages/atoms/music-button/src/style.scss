@@ -1,4 +1,29 @@
 :host {
-  color: var(--pap-color-text);
-  background-color: var(--pap-color-background);
+  display: block;
+  position: relative;
+  width: 32px;
+  height: 32px;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+:host([play="false"]) {
+  img.play {
+    display: none;
+  }
+  img.paused {
+    display: block;
+  }
+}
+:host([play="true"]) {
+  img.play {
+    display: block;
+  }
+  img.paused {
+    display: none;
+  }
 }

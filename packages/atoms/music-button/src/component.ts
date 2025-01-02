@@ -4,22 +4,40 @@ import { CustomElement, html, property } from "@papit/core";
 
 // local 
 import { style } from "./style";
-import { ClickEvent } from "./types";
 
 export class MusicButton extends CustomElement {
   static style = style;
 
-  // properties 
-  @property({ type: Boolean }) foo: boolean = false;
+  song: HTMLAudioElement;
+  @property({ 
+    type: Boolean, 
+    rerender: false,
+    after: function(this:MusicButton, value: boolean) {
+      if (value) {
+        this.song.play();
+      }
+      else 
+      {
+        this.song.pause();
+      }
+    }
+  }) play:boolean = false;
 
-  // event handlers
-  private handleclick = () => {
-    this.dispatchEvent(new CustomEvent<ClickEvent>("main-click", { detail: { timestamp: performance.now() } }));
+  constructor() {
+    super();
+    this.song = new Audio("sounds/theme.mp3");
+    this.song.loop = true;
+    this.addEventListener("click", this.handleclick);
+  }
+
+  handleclick = () => {
+    this.play = !this.play;
   }
 
   render() {
     return html`
-      <p @click="${this.handleclick}">Llama Trauma Baby Mama</p>
+      <img class="play" src="images/music-play.png" alt="music play" />
+      <img class="paused" src="images/music-pause.png" alt="music pause" />
     `
   }
 }
